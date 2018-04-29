@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Proxy-proxy",
+  "version": "0.0.0",
+  "description": "Proxing proxy required sites to your proxy.",
+  "applications": {
+    "gecko": {
+      "id": "pproxy@oott123.com",
+      "strict_min_version": "60.0"
+    }
+  },
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+  "permissions": [
+    "proxy",
+    "<all_urls>"
+  ],
+  "background": {
+    "page": "./src/firefox/background.html"
+  }
+}
