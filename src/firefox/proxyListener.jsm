@@ -1,5 +1,5 @@
-import { onRequest } from './onRequest.js'
-import { init } from '../processor/shouldProxy.js'
+import { onRequest } from './onRequest.jsm'
+import { init } from '../processor/shouldProxy.jsm'
 
 let debug = window.debug('pproxy:fx:proxylisenter')
 

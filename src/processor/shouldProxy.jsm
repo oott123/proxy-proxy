@@ -1,4 +1,4 @@
-import { initRules, getRuleset } from './rules.js'
+import { initRules, getRuleset } from './rules.jsm'
 
 let debug = window.debug('pproxy:prcs:shouldproxy')
 

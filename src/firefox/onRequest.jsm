@@ -1,4 +1,4 @@
-import { shouldUseProxy } from '../processor/shouldProxy.js'
+import { shouldUseProxy } from '../processor/shouldProxy.jsm'
 
 let debug = window.debug('pproxy:prcs:onrequest')
 

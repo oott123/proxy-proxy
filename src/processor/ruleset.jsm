@@ -1,4 +1,4 @@
-import BloomFilter from '../../lib/bloomfilter.js'
+import BloomFilter from '../../lib/bloomfilter.jsm'
 
 export default class Ruleset {
   constructor(key) {

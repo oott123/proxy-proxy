@@ -1,4 +1,4 @@
-import Ruleset from './ruleset.js'
+import Ruleset from './ruleset.jsm'
 
 let RULES = new Map()
 let debug = window.debug('pproxy:prcs:rules')
