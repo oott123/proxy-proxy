@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Proxy-proxy",
+  "name": "Proxy-Proxy",
   "version": "0.0.0",
   "description": "Proxing proxy required sites to your proxy.",
   "applications": {
@@ -10,7 +10,7 @@
     }
   },
   "icons": {
-    "48": "icons/border-48.png"
+    "500": "src/assets/logo.png"
   },
   "permissions": [
     "proxy",
