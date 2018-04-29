@@ -3,7 +3,7 @@ import { initRules, getRuleset } from './rules.js'
 let debug = window.debug('pproxy:prcs:shouldproxy')
 
 export async function init() {
-  initRules()
+  await initRules()
 }
 
 export function shouldUseProxy(url) {
