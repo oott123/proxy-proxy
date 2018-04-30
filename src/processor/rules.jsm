@@ -21,27 +21,43 @@ function newRuleset(key) {
   return new Ruleset(key)
 }
 
-async function loadTxt(path, ruleName) {
-  debug(`loading ${path} to ${ruleName}`)
+async function readLines(path) {
   const res = await fetch(path)
   const text = await res.text()
   const list = text.split('\n').filter(s => !!s)
+  return list
+}
+
+async function loadHostfileToRuleset(path, ruleName) {
+  debug(`loading hostfile ${path} to ${ruleName}`)
+  const list = await readLines(path)
   debug(`importing ${list.length} items ...`)
-  const directRules = await ensureRuleset(ruleName)
+  const ruleset = await ensureRuleset(ruleName)
   for (const host of list) {
-    directRules.addHost(host)
+    ruleset.addHost(host)
+  }
+  debug('imported.')
+}
+
+async function loadRegexpfileToRuleset(path, ruleName) {
+  debug(`loading regexp file ${path} to ${ruleName}`)
+  const list = await readLines(path)
+  debug(`importing ${list.length} items ...`)
+  const ruleset = await ensureRuleset(ruleName)
+  for (const host of list) {
+    ruleset.addRegexp(host)
   }
   debug('imported.')
 }
 
 async function loadFiles() {
-  await loadTxt('/src/assets/cnDomains.txt', 'direct')
-  await loadTxt('/src/assets/cdn.txt', 'direct')
-  await loadTxt('/src/assets/myCnDomains.txt', 'direct')
-  await loadTxt('/src/assets/simpleProxy.txt', 'proxy')
+  await loadHostfileToRuleset('/src/assets/cnDomains.txt', 'direct')
+  await loadHostfileToRuleset('/src/assets/cdn.txt', 'direct')
+  await loadHostfileToRuleset('/src/assets/myCnDomains.txt', 'direct')
+  await loadHostfileToRuleset('/src/assets/simpleProxy.txt', 'proxy')
+  await loadRegexpfileToRuleset('/src/assets/directRegexps.txt', 'direct')
 }
 
 export async function initRules() {
   await loadFiles()
-  // await ensureRuleset('proxy')
 }

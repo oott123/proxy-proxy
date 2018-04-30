@@ -14,6 +14,7 @@
   },
   "permissions": [
     "proxy",
+    "dns",
     "<all_urls>"
   ],
   "background": {

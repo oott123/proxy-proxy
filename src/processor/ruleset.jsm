@@ -12,7 +12,6 @@ export default class Ruleset {
     this.debug = window.debug(`pproxy:prcs:ruleset:${key}`)
   }
   test(url) {
-    window.rules = this.rules
     if (!(url instanceof URL)) {
       url = new URL(url)
     }
@@ -57,5 +56,11 @@ export default class Ruleset {
   }
   addHost(host) {
     this.rules.host.add(host)
+  }
+  addRegexp(regex) {
+    if (!(regex instanceof RegExp)) {
+      regex = new RegExp(regex, 'i')
+    }
+    this.rules.regexps.push(regex)
   }
 }

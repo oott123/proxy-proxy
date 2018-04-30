@@ -1,0 +1,15 @@
+^https?://127\.
+^https?://localhost(:|$)
+^https?://192\.168\.
+^https?://100\.64\.
+^https?://172\.1[6-9]\.
+^https?://172\.2[0-9]\.
+^https?://172\.3[0-1]\.
+^https?://172\.3[0-1]\.
+^https?://\[::1\]
+^https?://\[[fF][cCdD]\]
+^https?://.*\.?local(:|$)
+^https?://.*\.?dev(:|$)
+^https?://.*\.?localhost(:|$)
+^https?://.*\.?localdomain(:|$)
+^https?://.*\.?test(:|$)
