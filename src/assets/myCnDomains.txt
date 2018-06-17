@@ -1,2 +1,5 @@
 cn
 127.0.0.1
+soobb.com
+hicivitas.com
+hicivitas.net

@@ -5,6 +5,7 @@
   "author": "oott123 <git@public.oott123.com>",
   "license": "GPL-3.0+",
   "scripts": {
+    "preversion": "node postupdate.js",
     "postversion": "web-ext build"
   },
   "devDependencies": {
