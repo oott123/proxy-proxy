@@ -16,6 +16,22 @@
     "@cliqz-oss/firefox-client" "0.3.1"
     es6-promise "^2.0.1"
 
+"@futoin/ip-address@^5.8.11":
+  version "5.8.11"
+  resolved "http://registry.npm.taobao.org/@futoin/ip-address/download/@futoin/ip-address-5.8.11.tgz#511a5ceb79cac1ac388b996e17fb7dc518e00bcb"
+  dependencies:
+    "@futoin/jsbn" "^1.1.1"
+    lodash.find "^4.6.0"
+    lodash.max "^4.0.1"
+    lodash.merge "^4.6.0"
+    lodash.padstart "^4.6.1"
+    lodash.repeat "^4.1.0"
+    sprintf-js "1.1.0"
+
+"@futoin/jsbn@^1.1.1":
+  version "1.1.1"
+  resolved "http://registry.npm.taobao.org/@futoin/jsbn/download/@futoin/jsbn-1.1.1.tgz#c74cfc8b4a667f2d670b0b9238db0083109a8545"
+
 "@types/node@*":
   version "10.0.0"
   resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-10.0.0.tgz#c40f8e07dce607d3ef25a626b93a6a7cdcf97881"
@@ -1909,6 +1925,12 @@ functional-red-black-tree@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/functional-red-black-tree/download/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
 
+futoin-ipset@^1.3.0:
+  version "1.3.0"
+  resolved "http://registry.npm.taobao.org/futoin-ipset/download/futoin-ipset-1.3.0.tgz#1b09404f1edda356e84554651c8c10070bb10b5c"
+  dependencies:
+    "@futoin/ip-address" "^5.8.11"
+
 fx-runner@1.0.8:
   version "1.0.8"
   resolved "http://registry.npm.taobao.org/fx-runner/download/fx-runner-1.0.8.tgz#5ced3b04a8d51d634de20d1480f0dc5dd8325dec"
@@ -2820,6 +2842,10 @@ lodash.clonedeep@^4.3.0, lodash.clonedeep@^4.3.1:
   version "4.5.0"
   resolved "http://registry.npm.taobao.org/lodash.clonedeep/download/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
 
+lodash.find@^4.6.0:
+  version "4.6.0"
+  resolved "http://registry.npm.taobao.org/lodash.find/download/lodash.find-4.6.0.tgz#cb0704d47ab71789ffa0de8b97dd926fb88b13b1"
+
 lodash.flatten@^4.4.0:
   version "4.4.0"
   resolved "http://registry.npm.taobao.org/lodash.flatten/download/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
@@ -2828,9 +2854,25 @@ lodash.get@^4.4.2:
   version "4.4.2"
   resolved "http://registry.npm.taobao.org/lodash.get/download/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
+lodash.max@^4.0.1:
+  version "4.0.1"
+  resolved "http://registry.npm.taobao.org/lodash.max/download/lodash.max-4.0.1.tgz#8735566c618b35a9f760520b487ae79658af136a"
+
+lodash.merge@^4.6.0:
+  version "4.6.1"
+  resolved "http://registry.npm.taobao.org/lodash.merge/download/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
+
 lodash.once@^4.0.0:
   version "4.1.1"
   resolved "http://registry.npm.taobao.org/lodash.once/download/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
+
+lodash.padstart@^4.6.1:
+  version "4.6.1"
+  resolved "http://registry.npm.taobao.org/lodash.padstart/download/lodash.padstart-4.6.1.tgz#d2e3eebff0d9d39ad50f5cbd1b52a7bce6bb611b"
+
+lodash.repeat@^4.1.0:
+  version "4.1.0"
+  resolved "http://registry.npm.taobao.org/lodash.repeat/download/lodash.repeat-4.1.0.tgz#fc7de8131d8c8ac07e4b49f74ffe829d1f2bec44"
 
 lodash.set@^4.3.2:
   version "4.3.2"
@@ -4330,6 +4372,10 @@ split@~0.3.3:
   resolved "http://registry.npm.taobao.org/split/download/split-0.3.3.tgz#cd0eea5e63a211dfff7eb0f091c4133e2d0dd28f"
   dependencies:
     through "2"
+
+sprintf-js@1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npm.taobao.org/sprintf-js/download/sprintf-js-1.1.0.tgz#cffcaf702daf65ea39bb4e0fa2b299cec1a1be46"
 
 sprintf-js@~1.0.2:
   version "1.0.3"

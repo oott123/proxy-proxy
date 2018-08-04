@@ -13,3 +13,4 @@ home
 example
 invalid
 localhost
+lan

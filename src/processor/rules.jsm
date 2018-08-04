@@ -50,12 +50,25 @@ async function loadRegexpfileToRuleset(path, ruleName) {
   debug('imported.')
 }
 
+async function loadIPFileToRuleset(path, ruleName) {
+  debug(`loading ip file ${path} to ${ruleName}`)
+  const list = await readLines(path)
+  debug(`importing ${list.length} items ...`)
+  const ruleset = await ensureRuleset(ruleName)
+  for (const ip of list) {
+    ruleset.addIP(ip)
+  }
+  debug('imported.')
+}
+
 async function loadFiles() {
   await loadHostfileToRuleset('/src/assets/cnDomains.txt', 'direct')
   await loadHostfileToRuleset('/src/assets/cdn.txt', 'direct')
   await loadHostfileToRuleset('/src/assets/myCnDomains.txt', 'direct')
   await loadHostfileToRuleset('/src/assets/simpleProxy.txt', 'proxy')
   await loadRegexpfileToRuleset('/src/assets/directRegexps.txt', 'direct')
+  await loadIPFileToRuleset('/src/assets/chnroutes.txt', 'direct')
+  await loadIPFileToRuleset('/src/assets/directroutes.txt', 'direct')
 }
 
 export async function initRules() {

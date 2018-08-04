@@ -3,11 +3,16 @@ import BloomFilter from '../../lib/bloomfilter.jsm'
 export default class Ruleset {
   constructor(key) {
     this.key = key
+    this.ipset = new window.FutoIn.ipset.IPSet()
     this.rules = {
       host: new BloomFilter(512 * 1024, 16),
       tld: new BloomFilter(128 * 1024, 16),
-      // origin: new BloomFilter(128 * 1024, 16),
-      regexps: []
+      regexps: [],
+      ip: {
+        add: x => this.ipset.add(x, 'yes'),
+        remove: x => this.ipset.remove(x, 'yes'),
+        match: x => !!this.ipset.match(x)
+      }
     }
     this.debug = window.debug(`pproxy:prcs:ruleset:${key}`)
   }
@@ -15,12 +20,6 @@ export default class Ruleset {
     if (!(url instanceof URL)) {
       url = new URL(url)
     }
-    // this.debug(`testing ${url.origin}`)
-    // // this.debug(`testing origin ${url.origin}`)
-    // if (this.rules.origin.test(url.origin)) {
-    //   this.debug('test passed using origin')
-    //   return true
-    // }
     // this.debug(`testing hostname ${url.hostname}`)
     if (this.rules.host.test(url.hostname)) {
       this.debug('test passed using hostname')
@@ -54,6 +53,27 @@ export default class Ruleset {
     this.debug('test failed')
     return false
   }
+  async testIP(url) {
+    if (!(url instanceof URL)) {
+      url = new URL(url)
+    }
+    this.debug(`resolving ${url.hostname}`)
+    const resolve = await browser.dns.resolve(url.hostname)
+    const addresses = resolve.addresses
+    this.debug(`resolved ${url.hostname}: ${addresses.join(', ')}`)
+    let matches = 0
+    for (const address of addresses) {
+      this.debug(`checking ${address} in ipset`)
+      if (this.rules.ip.match(address)) {
+        this.debug(`${address} is in the ipset`)
+        matches++
+        break // 加速一下。毕竟请求那么多地址也没用……判断一次要 3ms 呢，也不便宜了！
+      } else {
+        this.debug(`${address} is not in the ipset`)
+      }
+    }
+    return matches
+  }
   addHost(host) {
     this.rules.host.add(host)
   }
@@ -62,5 +82,8 @@ export default class Ruleset {
       regex = new RegExp(regex, 'i')
     }
     this.rules.regexps.push(regex)
+  }
+  addIP(ip) {
+    this.rules.ip.add(ip)
   }
 }

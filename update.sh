@@ -1,6 +1,10 @@
 #!/bin/bash
 # wget -O src/assets/temp-gfwlist.txt https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 
+cp node_modules/futoin-ipset/dist/futoin-ipset.js lib/ipset.js
+
+wget -O src/assets/chnroutes.txt https://lib.best33.com/share/loveroutes.txt 
+
 tempname1=`mktemp`
 tempname2=`mktemp`
 tempname_all=`mktemp`
@@ -15,5 +19,6 @@ cat $tempname1 $tempname2 | sort | uniq > $tempname_all
 echo "sort and uniq lines: " `wc -l $tempname_all`
 
 mv $tempname_all src/assets/cdn.txt
+
 
 rm $tempname1 $tempname2
