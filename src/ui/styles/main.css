@@ -1,0 +1,55 @@
+:root {
+  --highlight-color: #edfbfe;
+  --active-color: #d2eef5;
+  --border-color: #ddd;
+  --text-color: #333;
+}
+body {
+  width: 240px;
+  padding: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+}
+* {
+  box-sizing: border-box;
+}
+.ruleset {
+  display: flex;
+  height: 36px;
+  align-items: center;
+  padding: 6px;
+}
+.ruleset:hover {
+  background-color: var(--highlight-color);
+}
+.ruleset .name {
+  width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+.ruleset .action {
+  flex: 1;
+}
+.ruleset .action select {
+  height: 28px;
+  width: 100%;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+}
+.actions button {
+  padding: 4px 8px;
+  margin: 3px 4px;
+  border: 1px solid var(--border-color);
+  background: none;
+  font-size: 14px;
+  width: fill;
+}
+.actions button:hover {
+  background-color: var(--highlight-color);
+}
+.actions button:active {
+  background-color: var(--active-color);
+}

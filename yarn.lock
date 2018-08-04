@@ -4891,6 +4891,10 @@ vfile@^1.0.0:
   version "1.4.0"
   resolved "http://registry.npm.taobao.org/vfile/download/vfile-1.4.0.tgz#c0fd6fa484f8debdb771f68c31ed75d88da97fe7"
 
+vue@^2.5.17:
+  version "2.5.17"
+  resolved "http://registry.npm.taobao.org/vue/download/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
+
 watchpack@1.5.0:
   version "1.5.0"
   resolved "http://registry.npm.taobao.org/watchpack/download/watchpack-1.5.0.tgz#231e783af830a22f8966f65c4c4bacc814072eed"

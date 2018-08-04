@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Proxy Proxy - For endless freedom</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="actions scenes">
+      <button v-for="scene in scenes">{{scene.name}}</button>
+    </div>
+    <div class="rulesets">
+      <div class="ruleset" v-for="ruleset in rulesets">
+        <div class="name">{{ruleset.name}}</div>
+        <div class="action">
+          <select v-model="ruleset.proxy">
+            <option v-for="proxy in proxies" :value="proxy.name">{{proxy.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="actions current-page">
+      <button>添加当前页</button>
+    </div>
+    <div class="actions advanced">
+      <button>管理情景</button>
+      <button>全部禁用</button>
+    </div>
+  </div>
+  <script src="scripts/main.js" type="module"></script>
+</body>
+
+</html>

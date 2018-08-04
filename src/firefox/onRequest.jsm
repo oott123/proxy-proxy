@@ -7,7 +7,7 @@ export async function onRequest(requestInfo) {
   const useProxy = await shouldUseProxyByRequest(requestInfo)
   if (useProxy) {
     debug('using proxy (COST)')
-    return { type: 'socks', host: '127.0.0.1', port: '23001' }
+    return useProxy
   } else {
     debug('using direct (COST)')
     return { type: 'direct' }

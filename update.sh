@@ -2,6 +2,7 @@
 # wget -O src/assets/temp-gfwlist.txt https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt
 
 cp node_modules/futoin-ipset/dist/futoin-ipset.js lib/ipset.js
+cp node_modules/vue/dist/vue.esm.browser.js lib/vue.jsm
 
 wget -O src/assets/chnroutes.txt https://lib.best33.com/share/loveroutes.txt 
 

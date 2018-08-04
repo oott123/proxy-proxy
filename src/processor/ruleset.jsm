@@ -6,7 +6,6 @@ export default class Ruleset {
     this.ipset = new window.FutoIn.ipset.IPSet()
     this.rules = {
       host: new BloomFilter(512 * 1024, 16),
-      tld: new BloomFilter(128 * 1024, 16),
       regexps: [],
       ip: {
         add: x => this.ipset.add(x, 'yes'),
@@ -67,10 +66,10 @@ export default class Ruleset {
       if (this.rules.ip.match(address)) {
         this.debug(`${address} is in the ipset`)
         matches++
-        break // 加速一下。毕竟请求那么多地址也没用……判断一次要 3ms 呢，也不便宜了！
       } else {
         this.debug(`${address} is not in the ipset`)
       }
+      break // 加速一下。毕竟请求那么多地址也没用……判断一次要 3ms 呢，也不便宜了！
     }
     return matches
   }

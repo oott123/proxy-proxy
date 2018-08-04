@@ -15,9 +15,19 @@
   "permissions": [
     "proxy",
     "dns",
+    "storage",
     "<all_urls>"
   ],
   "background": {
     "page": "./src/firefox/background.html"
-  }
+  },
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": {
+      "38": "src/assets/buttons/normal_38.png"
+    },
+    "default_title": "Proxy Proxy",
+    "default_popup": "src/ui/popup.html"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self';"
 }
