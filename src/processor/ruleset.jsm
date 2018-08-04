@@ -6,7 +6,7 @@ export default class Ruleset {
     this.rules = {
       host: new BloomFilter(512 * 1024, 16),
       tld: new BloomFilter(128 * 1024, 16),
-      origin: new BloomFilter(128 * 1024, 16),
+      // origin: new BloomFilter(128 * 1024, 16),
       regexps: []
     }
     this.debug = window.debug(`pproxy:prcs:ruleset:${key}`)
@@ -15,12 +15,12 @@ export default class Ruleset {
     if (!(url instanceof URL)) {
       url = new URL(url)
     }
-    this.debug(`testing ${url.origin}`)
-    // this.debug(`testing origin ${url.origin}`)
-    if (this.rules.origin.test(url.origin)) {
-      this.debug('test passed using origin')
-      return true
-    }
+    // this.debug(`testing ${url.origin}`)
+    // // this.debug(`testing origin ${url.origin}`)
+    // if (this.rules.origin.test(url.origin)) {
+    //   this.debug('test passed using origin')
+    //   return true
+    // }
     // this.debug(`testing hostname ${url.hostname}`)
     if (this.rules.host.test(url.hostname)) {
       this.debug('test passed using hostname')
