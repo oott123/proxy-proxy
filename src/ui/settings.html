@@ -118,7 +118,7 @@
                   <label class="label">导入的规则文件</label>
                   <p class="help">规则文件在每次启动或设置变更时下载。请设置可以直接连接的规则地址，避免不必要的麻烦。</p>
                 </div>
-                <div class="columns rule-row is-variable is-1" v-for="imp of uiCurrentRuleset.imports">
+                <div class="columns rule-row is-variable is-1" v-for="(imp, index) of uiCurrentRuleset.imports">
                   <div class="column min-content-column">
                     <div class="select">
                       <select v-model="imp.type">
@@ -132,7 +132,7 @@
                     <input type="text" class="input" v-model="imp.url">
                   </div>
                   <div class="column min-content-column">
-                    <button class="button is-danger is-outlined">删除</button>
+                    <button class="button is-danger is-outlined" @click="removeRuleFile(index)">删除</button>
                   </div>
                 </div>
                 <button class="button padding-bottom" @click="addRuleFile">添加规则文件</button>

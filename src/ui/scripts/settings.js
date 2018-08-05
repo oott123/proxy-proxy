@@ -128,6 +128,9 @@ async function init() {
           url: ''
         })
       },
+      removeRuleFile(index) {
+        this.uiCurrentRuleset.imports.splice(index, 1)
+      },
       undoChanges() {
         if (confirm('真的要撤销修改吗？')) {
           this.ui.modified = false
