@@ -45,6 +45,24 @@ async function init() {
           this.ui.currentRulesetIndex = 0
         }
       },
+      removeProxy(index) {
+        const proxyName = this.proxies[index].name
+        for (const scene of this.scenes) {
+          if (Object.values(scene.proxies).indexOf(proxyName) > -1) {
+            return alert(
+              `情景模式 ${
+                scene.displayName
+              } 正在使用该代理，请先取消该代理的选择再删除`
+            )
+          }
+        }
+        if (Object.values(this.currentRules).indexOf(proxyName) > -1) {
+          return alert(
+            '当前的工作规则正在使用该代理，请先在弹出菜单中取消该代理的选择再删除'
+          )
+        }
+        return this.remove('proxies', index)
+      },
       addScene(e) {
         if (!this.proxies[0]) {
           return alert('没有代理啊，先建一个代理吧')
