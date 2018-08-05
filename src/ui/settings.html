@@ -37,17 +37,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="scene in scenes" :key="scene.name">
+              <tr v-for="(scene, index) in scenes" :key="scene.name">
                 <td>
                   <div class="field has-addons">
                     <p class="control">
-                      <a class="button">↑</a>
+                      <a class="button" :disabled="index === 0" @click="moveUp('scenes', index)">↑</a>
                     </p>
                     <p class="control">
-                      <a class="button">↓</a>
+                      <a class="button" :disabled="index === scenes.length - 1" @click="moveDown('scenes', index)">↓</a>
                     </p>
                     <p class="control">
-                      <a class="button">✘</a>
+                      <a class="button" @click="remove('scenes', index)">✘</a>
                     </p>
                   </div>
                 </td>
@@ -74,7 +74,18 @@
               <nav class="panel">
                 <a v-for="(ruleset, index) in rulesets" class="panel-block" :key="ruleset.name" @click="ui.currentRulesetIndex = index" :class="{'is-active': ui.currentRulesetIndex === index}">{{ruleset.displayName}}</a>
                 <div class="panel-block">
-                  <button class="button is-fullwidth">新建规则组</button>
+                    <button class="button">新建</button>
+                    <div class="field has-addons">
+                      <p class="control">
+                        <a class="button" :disabled="ui.currentRulesetIndex === 0" @click="moveUpRuleset">↑</a>
+                      </p>
+                      <p class="control">
+                        <a class="button" :disabled="ui.currentRulesetIndex === rulesets.length - 1" @click="moveDownRuleset">↓</a>
+                      </p>
+                      <p class="control">
+                        <a class="button" @click="removeRuleset">✘</a>
+                      </p>
+                    </div>
                 </div>
               </nav>
             </div>
@@ -155,17 +166,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="proxy in proxies">
+              <tr v-for="(proxy, index) in proxies">
                 <td>
-                  <div class="field has-addons">
+                  <div class="field">
                     <p class="control">
-                      <a class="button">↑</a>
-                    </p>
-                    <p class="control">
-                      <a class="button">↓</a>
-                    </p>
-                    <p class="control">
-                      <a class="button">✘</a>
+                      <a class="button" @click="remove('proxies', index)">✘</a>
                     </p>
                   </div>
                 </td>
