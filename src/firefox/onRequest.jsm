@@ -26,10 +26,10 @@ export async function onRequest(requestInfo) {
 }
 
 async function shouldUseProxyByRequest(requestInfo) {
-  if (requestInfo.documentUrl) {
-    if (!(await getProxyForUrl(requestInfo.documentUrl))) {
-      return false
-    }
-  }
+  // if (requestInfo.documentUrl) {
+  //   if (!(await getProxyForUrl(requestInfo.documentUrl))) {
+  //     return false
+  //   }
+  // }
   return getProxyForUrl(requestInfo.url, true)
 }
