@@ -15,3 +15,9 @@
 [v-cloak] {
   display: none;
 }
+.rule-row .column {
+  padding-bottom: 0;
+}
+.padding-bottom {
+  padding-bottom: 0.25rem;
+}

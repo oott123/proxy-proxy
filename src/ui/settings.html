@@ -97,24 +97,24 @@
                   <label class="label">导入的规则文件</label>
                   <p class="help">规则文件在每次启动或设置变更时下载。请设置可以直接连接的规则地址，避免不必要的麻烦。</p>
                 </div>
-                <div class="columns is-variable is-1">
+                <div class="columns rule-row is-variable is-1" v-for="imp of uiCurrentRuleset.imports">
                   <div class="column min-content-column">
                     <div class="select">
-                      <select>
-                        <option>地址正则</option>
-                        <option>主机名</option>
-                        <option>IP 地址段</option>
+                      <select v-model="imp.type">
+                        <option value="regexp">地址正则</option>
+                        <option value="host">主机名</option>
+                        <option value="ip">IP 地址段</option>
                       </select>
                     </div>
                   </div>
                   <div class="column">
-                    <input type="text" class="input">
+                    <input type="text" class="input" v-model="imp.url">
                   </div>
                   <div class="column min-content-column">
                     <button class="button is-danger is-outlined">删除</button>
                   </div>
                 </div>
-                <button class="button add-rule">新建规则文件</button>
+                <button class="button padding-bottom">新建规则文件</button>
                 <div class="field is-invisible">
                   <label class="label">规则</label>
                 </div>
@@ -135,7 +135,7 @@
                     <button class="button is-danger is-outlined">删除</button>
                   </div>
                 </div>
-                <button class="button add-rule is-invisible">新建规则</button>
+                <button class="button padding-bottom is-invisible">新建规则</button>
               </section>
             </div>
           </div>
