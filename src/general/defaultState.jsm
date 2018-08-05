@@ -52,11 +52,29 @@ export function getDefaultSyncState() {
       { name: 'other', displayName: '其它', other: true }
     ],
     proxies: [
-      { name: 'direct', displayName: '直连', config: { type: 'direct' } },
+      {
+        name: 'direct',
+        displayName: '直连',
+        config: {
+          type: 'direct',
+          host: '',
+          port: '',
+          username: '',
+          password: '',
+          proxyDNS: false
+        }
+      },
       {
         name: 'proxy',
         displayName: '代理',
-        config: { type: 'socks', host: '127.0.0.1', port: '1080' }
+        config: {
+          type: 'socks',
+          host: '127.0.0.1',
+          port: '1080',
+          username: '',
+          password: '',
+          proxyDNS: true
+        }
       }
     ],
     config: {}

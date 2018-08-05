@@ -65,7 +65,7 @@
             </tbody>
           </table>
           <div class="actions">
-            <a class="button is-primary">新建情景模式</a>
+            <a class="button is-primary" @click="addScene">新建情景模式</a>
           </div>
         </div>
         <div class="tab-rulesets" v-show="ui.currentTab === 'rulesets'">
@@ -74,7 +74,7 @@
               <nav class="panel">
                 <a v-for="(ruleset, index) in rulesets" class="panel-block" :key="ruleset.name" @click="ui.currentRulesetIndex = index" :class="{'is-active': ui.currentRulesetIndex === index}">{{ruleset.displayName}}</a>
                 <div class="panel-block">
-                    <button class="button">新建</button>
+                    <button class="button" @click="addRuleset">新建</button>
                     <div class="field has-addons">
                       <p class="control">
                         <a class="button" :disabled="ui.currentRulesetIndex === 0" @click="moveUpRuleset">↑</a>
@@ -125,7 +125,7 @@
                     <button class="button is-danger is-outlined">删除</button>
                   </div>
                 </div>
-                <button class="button padding-bottom">新建规则文件</button>
+                <button class="button padding-bottom" @click="addRuleFile">添加规则文件</button>
                 <div class="field is-invisible">
                   <label class="label">规则</label>
                 </div>
@@ -146,7 +146,7 @@
                     <button class="button is-danger is-outlined">删除</button>
                   </div>
                 </div>
-                <button class="button padding-bottom is-invisible">新建规则</button>
+                <button class="button padding-bottom is-invisible">添加规则</button>
               </section>
             </div>
           </div>
@@ -222,7 +222,7 @@
             </tbody>
           </table>
           <div class="actions">
-            <a class="button is-primary">新建代理</a>
+            <a class="button is-primary" @click="addProxy">新建代理</a>
           </div>
         </div>
       </div>

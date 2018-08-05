@@ -44,6 +44,53 @@ async function init() {
         if (this.ui.currentRulesetIndex > this.rulesets.length - 1) {
           this.ui.currentRulesetIndex = 0
         }
+      },
+      addScene(e) {
+        if (!this.proxies[0]) {
+          return alert('没有代理啊，先建一个代理吧')
+        }
+        const name = getName(e)
+        const proxy = this.proxies[0].name
+        const proxies = this.rulesets.reduce((p, c) => {
+          p[c.name] = proxy
+          return p
+        }, {})
+        this.scenes.push({
+          name,
+          displayName: '新建场景',
+          proxies
+        })
+      },
+      addRuleset(e) {
+        const name = getName(e)
+        this.rulesets.push({
+          name,
+          other: false,
+          displayName: '新建规则',
+          imports: []
+        })
+        this.ui.currentRulesetIndex = this.rulesets.length - 1
+      },
+      addProxy(e) {
+        const name = getName(e)
+        this.proxies.push({
+          name,
+          displayName: '新建代理',
+          config: {
+            type: 'direct',
+            host: '',
+            port: '',
+            username: '',
+            password: '',
+            proxyDNS: false
+          }
+        })
+      },
+      addRuleFile() {
+        this.uiCurrentRuleset.imports.push({
+          type: 'host',
+          url: ''
+        })
       }
     },
     computed: {
@@ -63,6 +110,16 @@ function move(arr, key, step) {
   const value = arr.splice(key, 1)[0]
   arr.splice(key + step, 0, value)
   return value
+}
+
+function getName({ altKey }) {
+  let name = Math.random()
+    .toString(36)
+    .slice(2)
+  if (altKey) {
+    name = prompt('输入唯一标识符(此乃隐藏设置，按 Alt 点击才可触发)', name)
+  }
+  return name
 }
 
 init().catch(console.error)
