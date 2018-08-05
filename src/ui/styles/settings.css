@@ -1,0 +1,17 @@
+.add-rule {
+  margin-top: -1rem;
+  margin-bottom: 1.25rem;
+}
+.min-content-column {
+  max-width: -moz-min-content;
+}
+.small-column {
+  max-width: 240px;
+}
+.large-checkbox {
+  width: 4rem;
+  height: 2.2rem;
+}
+[v-cloak] {
+  display: none;
+}

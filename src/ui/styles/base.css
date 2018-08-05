@@ -1,0 +1,14 @@
+:root {
+  --highlight-color: #edfbfe;
+  --active-color: #d2eef5;
+  --border-color: #ddd;
+  --text-color: #333;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 4px;
+  color: var(--text-color);
+  font-size: 16px;
+}

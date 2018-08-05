@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Proxy Proxy - For endless freedom</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/popup.css">
 </head>
 
 <body>
@@ -26,10 +27,10 @@
     </div>
     <div class="actions advanced">
       <button>添加当前页</button>
-      <button>管理情景</button>
+      <button @click="openSettings">管理情景</button>
     </div>
   </div>
-  <script src="scripts/main.js" type="module"></script>
+  <script src="scripts/popup.js" type="module"></script>
 </body>
 
 </html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>设置 - Proxy Proxy</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="/lib/bulma.css">
+  <link rel="stylesheet" href="styles/settings.css">
+</head>
+
+<body>
+  <section id="app" class="section" v-cloak>
+    <div class="container">
+      <div class="tabs">
+        <ul>
+          <li v-for="(name, key) in ui.tabs" :class="{'is-active': ui.currentTab === key}">
+            <a @click="ui.currentTab = key">{{name}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tabs-container">
+        <div class="tab-scenes" v-show="ui.currentTab === 'scenes'">
+          <article class="message">
+            <div class="message-body">
+              情景模式是规则组到代理服务器的映射，方便你应对不同的工作场景。你可以禁用某个规则组，这样他所包含的规则就不会生效。
+            </div>
+          </article>
+          <table class="table is-fullwidth is-hoverable is-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>名称</th>
+                <th v-for="ruleset in rulesets">{{ruleset.displayName}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="scene in scenes">
+                <td>
+                  <div class="field has-addons">
+                    <p class="control">
+                      <a class="button">↑</a>
+                    </p>
+                    <p class="control">
+                      <a class="button">↓</a>
+                    </p>
+                    <p class="control">
+                      <a class="button">✘</a>
+                    </p>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="input" placeholder="情景名称" v-model="scene.displayName">
+                </td>
+                <td v-for="ruleset in rulesets">
+                  <div class="select">
+                    <select v-model="scene.proxies[ruleset.name]">
+                      <option v-for="proxy in proxies" :value="proxy.name">{{proxy.displayName}}</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="actions">
+            <a class="button is-primary">新建情景模式</a>
+          </div>
+        </div>
+        <div class="tab-rulesets" v-show="ui.currentTab === 'rulesets'">
+          <div class="columns">
+            <div class="column small-column">
+              <nav class="panel">
+                <a class="panel-block is-active">中国大陆</a>
+                <a class="panel-block">知名国外网站</a>
+                <a class="panel-block">其它</a>
+                <div class="panel-block">
+                  <button class="button is-fullwidth">新建规则组</button>
+                </div>
+              </nav>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label for="name" class="label">规则名</label>
+                <div class="control">
+                  <input class="input" type="text" id="name" value="中国大陆">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">特性</label>
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox"> 地址正则</label>
+                  <label class="checkbox">
+                    <input type="checkbox"> 主机名</label>
+                  <label class="checkbox">
+                    <input type="checkbox"> IP 地址段</label>
+                  <label class="checkbox">
+                    <input type="checkbox"> 选中所有网址(其它)</label>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">导入的规则文件</label>
+                <p class="help">规则文件在每次启动或设置变更时下载。请设置可以直接连接的规则地址，避免不必要的麻烦。</p>
+              </div>
+              <div class="columns is-variable is-1">
+                <div class="column min-content-column">
+                  <div class="select">
+                    <select>
+                      <option>地址正则</option>
+                      <option>主机名</option>
+                      <option>IP 地址段</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="column">
+                  <input type="text" class="input">
+                </div>
+                <div class="column min-content-column">
+                  <button class="button is-danger is-outlined">删除</button>
+                </div>
+              </div>
+              <button class="button add-rule">新建规则文件</button>
+              <div class="field">
+                <label class="label">规则</label>
+              </div>
+              <div class="columns is-variable is-1">
+                <div class="column min-content-column">
+                  <div class="select">
+                    <select>
+                      <option>地址正则</option>
+                      <option>主机名</option>
+                      <option>IP 地址段</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="column">
+                  <input type="text" class="input">
+                </div>
+                <div class="column min-content-column">
+                  <button class="button is-danger is-outlined">删除</button>
+                </div>
+              </div>
+              <button class="button add-rule">新建规则</button>
+            </div>
+          </div>
+        </div>
+        <div class="tab-proxies" v-show="ui.currentTab === 'proxies'">
+          <table class="table is-fullwidth is-hoverable is-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>名称</th>
+                <th>类型</th>
+                <th>主机</th>
+                <th>端口</th>
+                <th>用户名</th>
+                <th>密码</th>
+                <th>远程解析</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="field has-addons">
+                    <p class="control">
+                      <a class="button">↑</a>
+                    </p>
+                    <p class="control">
+                      <a class="button">↓</a>
+                    </p>
+                    <p class="control">
+                      <a class="button">✘</a>
+                    </p>
+                  </div>
+                </td>
+                <td>
+                  <input type="text" class="input" placeholder="服务器名称" value="proxy">
+                </td>
+                <td>
+                  <div class="select">
+                    <select>
+                      <option>direct</option>
+                      <option>http</option>
+                      <option>https</option>
+                      <option value="socks">socks5</option>
+                      <option>socks4</option>
+                    </select>
+                  </div>
+                </td>
+                <td>
+                  <input class="input" type="text" placeholder="localhost">
+                </td>
+                <td>
+                  <input class="input" type="text" placeholder="8888">
+                </td>
+                <td>
+                  <input class="input" type="text" placeholder="user">
+                </td>
+                <td>
+                  <input class="input" type="password" placeholder="pass">
+                </td>
+                <td>
+                  <input class="large-checkbox" type="checkbox">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="actions">
+            <a class="button is-primary">新建代理</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="scripts/settings.js" type="module"></script>
+</body>
+
+</html>

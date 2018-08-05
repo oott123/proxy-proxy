@@ -21,6 +21,7 @@
     "web-ext": "^2.6.0"
   },
   "dependencies": {
+    "bulma": "^0.7.1",
     "futoin-ipset": "^1.3.0",
     "vue": "^2.5.17"
   }

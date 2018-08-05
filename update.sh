@@ -3,6 +3,7 @@
 
 cp node_modules/futoin-ipset/dist/futoin-ipset.js lib/ipset.js
 cp node_modules/vue/dist/vue.esm.browser.js lib/vue.jsm
+cp node_modules/bulma/css/bulma.css lib/bulma.css
 
 wget -O src/assets/chnroutes.txt https://lib.best33.com/share/loveroutes.txt 
 

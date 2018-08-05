@@ -1,7 +1,26 @@
 const storage = browser.storage.sync
 
 export async function getStateFromStroage(items) {
-  const defaultState = {
+  const defaultState = getDefaultState()
+  const state = Object.assign(
+    {},
+    defaultState,
+    await storage.get(items || Object.keys(defaultState))
+  )
+  return state
+}
+
+export async function saveStateToStorage({
+  scenes,
+  rulesets,
+  proxies,
+  config
+}) {
+  return storage.set({ scenes, rulesets, proxies, config })
+}
+
+export function getDefaultState() {
+  return {
     scenes: [],
     rulesets: [
       {
@@ -37,19 +56,4 @@ export async function getStateFromStroage(items) {
     ],
     config: {}
   }
-  const state = Object.assign(
-    {},
-    defaultState,
-    await storage.get(items || Object.keys(defaultState))
-  )
-  return state
-}
-
-export async function saveStateToStorage({
-  scenes,
-  rulesets,
-  proxies,
-  config
-}) {
-  return storage.set({ scenes, rulesets, proxies, config })
 }

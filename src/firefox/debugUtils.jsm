@@ -1,7 +1,10 @@
 import * as rules from '../processor/rules.jsm'
-import { shouldUseProxy } from '../processor/shouldProxy.jsm'
+import { getProxyForUrl } from '../processor/shouldProxy.jsm'
 
 export function addGlobalVars() {
   window.rules = rules
-  window.shouldUseProxy = shouldUseProxy
+  window.getProxyForUrl = async (x, y) => {
+    const proxy = await getProxyForUrl(x, y)
+    console.log(x, proxy)
+  }
 }
