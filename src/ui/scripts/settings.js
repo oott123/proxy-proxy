@@ -1,5 +1,5 @@
 import Vue from '../../../lib/vue.jsm'
-import { getDefaultState } from '../../general/storage.jsm'
+import { getDefaultState } from '../../general/defaultState.jsm'
 
 async function init() {
   const state = getDefaultState()
