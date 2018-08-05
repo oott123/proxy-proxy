@@ -1,5 +1,5 @@
 body {
-  width: 240px;
+  min-width: 260px;
 }
 
 .ruleset {
