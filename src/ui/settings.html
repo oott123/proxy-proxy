@@ -25,7 +25,7 @@
         <div class="tab-scenes" v-show="ui.currentTab === 'scenes'">
           <article class="message">
             <div class="message-body">
-              情景模式是规则组到代理服务器的映射，方便你应对不同的工作场景。你可以禁用某个规则组，这样他所包含的规则就不会生效。
+              情景模式是规则组到代理服务器的映射，方便你应对不同的工作场景。
             </div>
           </article>
           <table class="table is-fullwidth is-hoverable is-striped">
@@ -155,7 +155,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr v-for="proxy in proxies">
                 <td>
                   <div class="field has-addons">
                     <p class="control">
@@ -170,33 +170,48 @@
                   </div>
                 </td>
                 <td>
-                  <input type="text" class="input" placeholder="服务器名称" value="proxy">
+                  <input type="text" class="input" placeholder="服务器名称" v-model="proxy.displayName">
                 </td>
                 <td>
                   <div class="select">
-                    <select>
-                      <option>direct</option>
-                      <option>http</option>
-                      <option>https</option>
-                      <option value="socks">socks5</option>
-                      <option>socks4</option>
+                    <select v-model="proxy.config.type">
+                      <option value="direct">直接连接</option>
+                      <option value="http">HTTP</option>
+                      <option value="https">HTTPS</option>
+                      <option value="socks">SOCKS5</option>
+                      <option value="socks4">SOCKS4</option>
                     </select>
                   </div>
                 </td>
                 <td>
-                  <input class="input" type="text" placeholder="localhost">
+                  <input
+                    v-show="proxy.config.type !== 'direct'"
+                    v-model="proxy.config.host"
+                    class="input" type="text" placeholder="localhost">
                 </td>
                 <td>
-                  <input class="input" type="text" placeholder="8888">
+                  <input
+                    v-show="proxy.config.type !== 'direct'"
+                    v-model="proxy.config.port"
+                    class="input" type="text" placeholder="8888">
                 </td>
                 <td>
-                  <input class="input" type="text" placeholder="user">
+                  <input
+                    v-show="proxy.config.type !== 'direct'"
+                    v-model="proxy.config.username"
+                    class="input" type="text" placeholder="user">
                 </td>
                 <td>
-                  <input class="input" type="password" placeholder="pass">
+                  <input
+                    v-show="proxy.config.type !== 'direct'"
+                    v-model="proxy.config.password"
+                    class="input" type="password" placeholder="pass">
                 </td>
                 <td>
-                  <input class="large-checkbox" type="checkbox">
+                  <input
+                    v-show="proxy.config.type === 'socks4' || proxy.config.type === 'socks'"
+                    v-model="proxy.config.proxyDNS"
+                    class="large-checkbox" type="checkbox">
                 </td>
               </tr>
             </tbody>

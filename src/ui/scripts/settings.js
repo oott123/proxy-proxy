@@ -7,7 +7,7 @@ async function init() {
     el: '#app',
     data: {
       ui: {
-        currentTab: 'rulesets',
+        currentTab: 'proxies',
         tabs: {
           scenes: '情景模式',
           rulesets: '规则组',
