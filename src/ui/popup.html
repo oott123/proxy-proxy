@@ -13,14 +13,14 @@
 <body>
   <div id="app">
     <div class="actions scenes">
-      <button v-for="scene in scenes">{{scene.name}}</button>
+      <button v-for="scene in scenes">{{scene.displayName}}</button>
     </div>
     <div class="rulesets">
       <div class="ruleset" v-for="ruleset in rulesets">
-        <div class="name">{{ruleset.name}}</div>
+        <div class="name">{{ruleset.displayName}}</div>
         <div class="action">
-          <select v-model="ruleset.proxy">
-            <option v-for="proxy in proxies" :value="proxy.name">{{proxy.name}}</option>
+          <select v-model="currentRules[ruleset.name]">
+            <option v-for="proxy in proxies" :value="proxy.name">{{proxy.displayName}}</option>
           </select>
         </div>
       </div>

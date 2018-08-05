@@ -93,8 +93,9 @@ async function loadFiles() {
   await loadIPFileToRuleset('/src/assets/directroutes.txt', 'direct')
 }
 
-async function loadFromStorage({ rulesets, proxies }) {
+async function loadFromStorage({ rulesets }) {
   for (const rulesetConfig of rulesets) {
+    await ensureRuleset(rulesetConfig.name)
     if (rulesetConfig.imports) {
       for (const type of Object.keys(rulesetConfig.imports)) {
         for (const file of rulesetConfig.imports[type]) {
@@ -102,17 +103,12 @@ async function loadFromStorage({ rulesets, proxies }) {
         }
       }
     }
-    const ruleset = await ensureRuleset(rulesetConfig.name)
-    ruleset.proxy = proxies.find(x => x.name === rulesetConfig.proxy)
   }
 }
 
 export async function initRules() {
   // await loadFiles()
-  const { rulesets, proxies } = await getStateFromStroage([
-    'rulesets',
-    'proxies'
-  ])
-  await loadFromStorage({ rulesets, proxies })
-  return { rulesets, proxies }
+  const { rulesets } = await getStateFromStroage(['rulesets'])
+  await loadFromStorage({ rulesets })
+  return { rulesets }
 }

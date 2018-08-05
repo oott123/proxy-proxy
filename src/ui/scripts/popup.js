@@ -1,6 +1,6 @@
 import {
   getStateFromStroage,
-  saveStateToStorage
+  saveLocalStateToStorage
 } from '../../general/storage.jsm'
 import Vue from '../../../lib/vue.jsm'
 
@@ -25,7 +25,7 @@ async function init() {
       modified = true
       browser.runtime.connect() // notify if closed
     }
-    saveStateToStorage(this.$data)
+    saveLocalStateToStorage(this.$data)
   }
   const vm = new Vue(options)
   Object.keys(state).forEach(key => {
