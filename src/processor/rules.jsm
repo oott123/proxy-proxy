@@ -83,16 +83,6 @@ async function loadIntoRuleset(path, ruleName, type) {
   debug('imported.')
 }
 
-async function loadFiles() {
-  await loadHostFileToRuleset('/src/assets/cnDomains.txt', 'direct')
-  await loadHostFileToRuleset('/src/assets/cdn.txt', 'direct')
-  await loadHostFileToRuleset('/src/assets/myCnDomains.txt', 'direct')
-  await loadHostFileToRuleset('/src/assets/simpleProxy.txt', 'proxy')
-  await loadRegexpFileToRuleset('/src/assets/directRegexps.txt', 'direct')
-  await loadIPFileToRuleset('/src/assets/chnroutes.txt', 'direct')
-  await loadIPFileToRuleset('/src/assets/directroutes.txt', 'direct')
-}
-
 async function loadFromStorage({ rulesets }) {
   for (const rulesetConfig of rulesets) {
     await ensureRuleset(rulesetConfig.name)
