@@ -34,23 +34,20 @@ export function getDefaultSyncState() {
         name: 'mainland-china',
         other: false,
         displayName: '中国大陆',
-        imports: {
-          host: [
-            '/src/assets/cnDomains.txt',
-            '/src/assets/cdn.txt',
-            '/src/assets/myCnDomains.txt'
-          ],
-          regexp: ['/src/assets/directRegexps.txt'],
-          ip: ['/src/assets/chnroutes.txt', '/src/assets/directroutes.txt']
-        }
+        imports: [
+          { type: 'host', url: '/src/assets/cnDomains.txt' },
+          { type: 'host', url: '/src/assets/cdn.txt' },
+          { type: 'host', url: '/src/assets/myCnDomains.txt' },
+          { type: 'regexp', url: '/src/assets/directRegexps.txt' },
+          { type: 'ip', url: '/src/assets/chnroutes.txt' },
+          { type: 'ip', url: '/src/assets/directroutes.txt' }
+        ]
       },
       {
         name: 'simple-proxy',
         other: false,
         displayName: '国外知名网站',
-        imports: {
-          host: ['/src/assets/simpleProxy.txt']
-        }
+        imports: [{ type: 'host', url: '/src/assets/simpleProxy.txt' }]
       },
       { name: 'other', displayName: '其它', other: true }
     ],

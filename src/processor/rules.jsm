@@ -97,10 +97,8 @@ async function loadFromStorage({ rulesets }) {
   for (const rulesetConfig of rulesets) {
     await ensureRuleset(rulesetConfig.name)
     if (rulesetConfig.imports) {
-      for (const type of Object.keys(rulesetConfig.imports)) {
-        for (const file of rulesetConfig.imports[type]) {
-          await loadIntoRuleset(file, rulesetConfig.name, type)
-        }
+      for (const imp of rulesetConfig.imports) {
+        await loadIntoRuleset(imp.url, rulesetConfig.name, imp.type)
       }
     }
   }
