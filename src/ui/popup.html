@@ -13,7 +13,7 @@
 <body>
   <div id="app">
     <div class="actions scenes">
-      <button v-for="scene in scenes">{{scene.displayName}}</button>
+      <button v-for="scene in scenes" @click="applyScene(scene)">{{scene.displayName}}</button>
     </div>
     <div class="rulesets">
       <div class="ruleset" v-for="ruleset in rulesets">

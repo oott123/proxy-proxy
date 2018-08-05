@@ -17,6 +17,9 @@ async function init() {
           url: 'settings.html'
         })
         window.close()
+      },
+      applyScene(scene) {
+        this.currentRules = scene.proxies
       }
     }
   }
