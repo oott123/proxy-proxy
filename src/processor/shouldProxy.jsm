@@ -37,7 +37,7 @@ export async function getProxyForUrl(url, checkIP = false) {
       return getConfigForRuleset(ruleset)
     }
     if (checkIP) {
-      if (ruleset.testIP(url)) {
+      if (await ruleset.testIP(url)) {
         debug(`hit IP in ${ruleset.key}`)
         return getConfigForRuleset(ruleset)
       }
