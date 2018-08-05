@@ -28,6 +28,10 @@ export async function getProxyForUrl(url, checkIP = false) {
   for (const ruleset of rulesets) {
     url = new URL(url)
     debug(`testing rules in ${ruleset.key} for ${url}`)
+    if (ruleset.config.other) {
+      debug(`${ruleset.key} is other, using this`)
+      return getConfigForRuleset(ruleset)
+    }
     if (ruleset.test(url)) {
       debug(`hit url in ${ruleset.key}`)
       return getConfigForRuleset(ruleset)

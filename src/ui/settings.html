@@ -74,6 +74,11 @@
           </div>
         </div>
         <div class="tab-rulesets" v-show="ui.currentTab === 'rulesets'">
+          <article class="message">
+            <div class="message-body">
+              规则组是一组 URL 或 IP 的集合。你可以在插件菜单中调整每个规则组对应的代理服务器，也可以使用情景模式以快速修改。
+            </div>
+          </article>
           <div class="columns">
             <div class="column small-column">
               <nav class="panel">
@@ -157,6 +162,11 @@
           </div>
         </div>
         <div class="tab-proxies" v-show="ui.currentTab === 'proxies'">
+          <article class="message">
+            <div class="message-body">
+              代理服务器是你访问网络的代理服务器。
+            </div>
+          </article>
           <table class="table is-fullwidth is-hoverable is-striped">
             <thead>
               <tr>
