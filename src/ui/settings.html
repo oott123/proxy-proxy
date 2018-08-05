@@ -19,6 +19,11 @@
           <li v-for="(name, key) in ui.tabs" :class="{'is-active': ui.currentTab === key}">
             <a @click="ui.currentTab = key">{{name}}</a>
           </li>
+          <div style="flex: 1"></div>
+          <div v-if="ui.modified">
+            <button class="button is-primary" @click="saveChanges">保存设置</button>
+            <button class="button" @click="undoChanges">撤销修改</button>
+          </div>
         </ul>
       </div>
       <div class="tabs-container">

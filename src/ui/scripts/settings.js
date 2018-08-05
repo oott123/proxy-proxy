@@ -1,12 +1,17 @@
 import Vue from '../../../lib/vue.jsm'
-import { getDefaultState } from '../../general/defaultState.jsm'
+import {
+  saveStateToStorage,
+  saveLocalStateToStorage,
+  getStateFromStroage
+} from '../../general/storage.jsm'
 
 async function init() {
-  const state = getDefaultState()
+  const state = await getStateFromStroage()
   const options = {
     el: '#app',
     data: {
       ui: {
+        modified: false,
         currentTab: 'scenes',
         tabs: {
           scenes: '情景模式',
@@ -36,9 +41,14 @@ async function init() {
         this.ui.currentRulesetIndex = this.rulesets.indexOf(v)
       },
       removeRuleset() {
-        if (this.ui.currentRulesetIndex === this.rulesets.length - 1) {
+        if (this.rulesets.length <= 1) {
           alert('别删了，留一个吧，全删了有 bug 懒得修')
           return
+        }
+        const rulesetName = this.uiCurrentRuleset.name
+        delete this.currentRules[rulesetName]
+        for (const scene of this.scenes) {
+          delete scene.proxies[rulesetName]
         }
         this.remove('rulesets', this.ui.currentRulesetIndex)
         if (this.ui.currentRulesetIndex > this.rulesets.length - 1) {
@@ -80,6 +90,9 @@ async function init() {
         })
       },
       addRuleset(e) {
+        if (!this.proxies[0]) {
+          return alert('没有代理啊，先建一个代理吧')
+        }
         const name = getName(e)
         this.rulesets.push({
           name,
@@ -87,6 +100,11 @@ async function init() {
           displayName: '新建规则',
           imports: []
         })
+        const proxy = this.proxies[0].name
+        this.$set(this.currentRules, name, proxy)
+        for (const scene of this.scenes) {
+          this.$set(scene.proxies, name, proxy)
+        }
         this.ui.currentRulesetIndex = this.rulesets.length - 1
       },
       addProxy(e) {
@@ -109,6 +127,21 @@ async function init() {
           type: 'host',
           url: ''
         })
+      },
+      undoChanges() {
+        if (confirm('真的要撤销修改吗？')) {
+          this.ui.modified = false
+          this.$nextTick(function() {
+            location.reload()
+          })
+        }
+      },
+      async saveChanges() {
+        await saveStateToStorage(this.$data)
+        await saveLocalStateToStorage(this.$data)
+        const port = await browser.runtime.connect()
+        port.disconnect()
+        this.ui.modified = false
       }
     },
     computed: {
@@ -119,9 +152,23 @@ async function init() {
   }
   const vm = new Vue(options)
   Object.keys(state).forEach(key => {
-    vm.$watch(key, function() {}, { deep: true })
+    vm.$watch(
+      key,
+      function() {
+        if (this.ui.modified === false) {
+          this.ui.modified = true
+        }
+      },
+      { deep: true }
+    )
   })
   window.vm = vm
+  window.addEventListener('beforeunload', function(e) {
+    if (vm.ui.modified) {
+      e.preventDefault()
+      return '你还有未保存的修改，真的要关闭吗？'
+    }
+  })
 }
 
 function move(arr, key, step) {
@@ -135,7 +182,10 @@ function getName({ altKey }) {
     .toString(36)
     .slice(2)
   if (altKey) {
-    name = prompt('输入唯一标识符(此乃隐藏设置，按 Alt 点击才可触发)', name)
+    name = prompt(
+      '输入唯一标识符\n此乃隐藏设置，按 Alt 点击才可触发，标识不查重，请自重',
+      name
+    )
   }
   return name
 }

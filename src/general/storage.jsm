@@ -37,9 +37,12 @@ export async function saveStateToStorage({
   proxies,
   config
 }) {
-  return browser.storage.sync.set({ scenes, rulesets, proxies, config })
+  const toSave = { scenes, rulesets, proxies, config }
+  return browser.storage.sync.set(JSON.parse(JSON.stringify(toSave)))
 }
 
 export async function saveLocalStateToStorage({ currentRules }) {
-  return browser.storage.local.set({ currentRules })
+  return browser.storage.local.set({
+    currentRules: JSON.parse(JSON.stringify(currentRules))
+  })
 }
