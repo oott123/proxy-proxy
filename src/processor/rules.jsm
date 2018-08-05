@@ -33,39 +33,6 @@ async function readLines(path) {
   return list
 }
 
-async function loadHostFileToRuleset(path, ruleName) {
-  debug(`loading hostfile ${path} to ${ruleName}`)
-  const list = await readLines(path)
-  debug(`importing ${list.length} items ...`)
-  const ruleset = await ensureRuleset(ruleName)
-  for (const host of list) {
-    ruleset.addHost(host)
-  }
-  debug('imported.')
-}
-
-async function loadRegexpFileToRuleset(path, ruleName) {
-  debug(`loading regexp file ${path} to ${ruleName}`)
-  const list = await readLines(path)
-  debug(`importing ${list.length} items ...`)
-  const ruleset = await ensureRuleset(ruleName)
-  for (const host of list) {
-    ruleset.addRegexp(host)
-  }
-  debug('imported.')
-}
-
-async function loadIPFileToRuleset(path, ruleName) {
-  debug(`loading ip file ${path} to ${ruleName}`)
-  const list = await readLines(path)
-  debug(`importing ${list.length} items ...`)
-  const ruleset = await ensureRuleset(ruleName)
-  for (const ip of list) {
-    ruleset.addIP(ip)
-  }
-  debug('imported.')
-}
-
 const typeMap = {
   host: 'addHost',
   regexp: 'addRegexp',
