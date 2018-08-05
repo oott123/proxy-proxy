@@ -37,7 +37,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="scene in scenes">
+              <tr v-for="scene in scenes" :key="scene.name">
                 <td>
                   <div class="field has-addons">
                     <p class="control">
@@ -72,9 +72,7 @@
           <div class="columns">
             <div class="column small-column">
               <nav class="panel">
-                <a class="panel-block is-active">中国大陆</a>
-                <a class="panel-block">知名国外网站</a>
-                <a class="panel-block">其它</a>
+                <a v-for="(ruleset, index) in rulesets" class="panel-block" :key="ruleset.name" @click="ui.currentRulesetIndex = index" :class="{'is-active': ui.currentRulesetIndex === index}">{{ruleset.displayName}}</a>
                 <div class="panel-block">
                   <button class="button is-fullwidth">新建规则组</button>
                 </div>
@@ -84,65 +82,61 @@
               <div class="field">
                 <label for="name" class="label">规则名</label>
                 <div class="control">
-                  <input class="input" type="text" id="name" value="中国大陆">
+                  <input class="input" type="text" id="name" v-model="uiCurrentRuleset.displayName">
                 </div>
               </div>
               <div class="field">
                 <label class="label">特性</label>
                 <div class="control">
                   <label class="checkbox">
-                    <input type="checkbox"> 地址正则</label>
-                  <label class="checkbox">
-                    <input type="checkbox"> 主机名</label>
-                  <label class="checkbox">
-                    <input type="checkbox"> IP 地址段</label>
-                  <label class="checkbox">
-                    <input type="checkbox"> 选中所有网址(其它)</label>
+                    <input type="checkbox" v-model="uiCurrentRuleset.other"> 选中所有网址(其它)</label>
                 </div>
               </div>
-              <div class="field">
-                <label class="label">导入的规则文件</label>
-                <p class="help">规则文件在每次启动或设置变更时下载。请设置可以直接连接的规则地址，避免不必要的麻烦。</p>
-              </div>
-              <div class="columns is-variable is-1">
-                <div class="column min-content-column">
-                  <div class="select">
-                    <select>
-                      <option>地址正则</option>
-                      <option>主机名</option>
-                      <option>IP 地址段</option>
-                    </select>
+              <section v-show="!uiCurrentRuleset.other">
+                <div class="field">
+                  <label class="label">导入的规则文件</label>
+                  <p class="help">规则文件在每次启动或设置变更时下载。请设置可以直接连接的规则地址，避免不必要的麻烦。</p>
+                </div>
+                <div class="columns is-variable is-1">
+                  <div class="column min-content-column">
+                    <div class="select">
+                      <select>
+                        <option>地址正则</option>
+                        <option>主机名</option>
+                        <option>IP 地址段</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <input type="text" class="input">
+                  </div>
+                  <div class="column min-content-column">
+                    <button class="button is-danger is-outlined">删除</button>
                   </div>
                 </div>
-                <div class="column">
-                  <input type="text" class="input">
+                <button class="button add-rule">新建规则文件</button>
+                <div class="field is-invisible">
+                  <label class="label">规则</label>
                 </div>
-                <div class="column min-content-column">
-                  <button class="button is-danger is-outlined">删除</button>
-                </div>
-              </div>
-              <button class="button add-rule">新建规则文件</button>
-              <div class="field">
-                <label class="label">规则</label>
-              </div>
-              <div class="columns is-variable is-1">
-                <div class="column min-content-column">
-                  <div class="select">
-                    <select>
-                      <option>地址正则</option>
-                      <option>主机名</option>
-                      <option>IP 地址段</option>
-                    </select>
+                <div class="columns is-variable is-1 is-invisible">
+                  <div class="column min-content-column">
+                    <div class="select">
+                      <select>
+                        <option>地址正则</option>
+                        <option>主机名</option>
+                        <option>IP 地址段</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <input type="text" class="input">
+                  </div>
+                  <div class="column min-content-column">
+                    <button class="button is-danger is-outlined">删除</button>
                   </div>
                 </div>
-                <div class="column">
-                  <input type="text" class="input">
-                </div>
-                <div class="column min-content-column">
-                  <button class="button is-danger is-outlined">删除</button>
-                </div>
-              </div>
-              <button class="button add-rule">新建规则</button>
+                <button class="button add-rule is-invisible">新建规则</button>
+              </section>
             </div>
           </div>
         </div>

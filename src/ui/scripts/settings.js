@@ -7,16 +7,22 @@ async function init() {
     el: '#app',
     data: {
       ui: {
-        currentTab: 'scenes',
+        currentTab: 'rulesets',
         tabs: {
           scenes: '情景模式',
           rulesets: '规则组',
           proxies: '代理服务器'
-        }
+        },
+        currentRulesetIndex: 0
       },
       ...state
     },
-    methods: {}
+    methods: {},
+    computed: {
+      uiCurrentRuleset() {
+        return this.rulesets[this.ui.currentRulesetIndex]
+      }
+    }
   }
   const vm = new Vue(options)
   Object.keys(state).forEach(key => {

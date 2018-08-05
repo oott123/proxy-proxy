@@ -32,8 +32,8 @@ export function getDefaultSyncState() {
     rulesets: [
       {
         name: 'mainland-china',
+        other: false,
         displayName: '中国大陆',
-        type: 'normal',
         imports: {
           host: [
             '/src/assets/cnDomains.txt',
@@ -46,13 +46,13 @@ export function getDefaultSyncState() {
       },
       {
         name: 'simple-proxy',
+        other: false,
         displayName: '国外知名网站',
-        type: 'normal',
         imports: {
           host: ['/src/assets/simpleProxy.txt']
         }
       },
-      { name: 'other', displayName: '其它', type: 'other' }
+      { name: 'other', displayName: '其它', other: true }
     ],
     proxies: [
       { name: 'direct', displayName: '直连', config: { type: 'direct' } },
