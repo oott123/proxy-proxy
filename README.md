@@ -7,9 +7,9 @@
 
 **WIP** - 本项目正在早期开发中
 
-[下载最新版](https://github.com/oott123/proxy-proxy/releases/latest)
-
 Proxy-Proxy 是一个自动切换代理的 Firefox 插件。
+
+[下载最新版](https://github.com/oott123/proxy-proxy/releases/latest) （含由 [bintray](https://bintray.com/) 驱动的自动更新）
 
 ## 特色
 
