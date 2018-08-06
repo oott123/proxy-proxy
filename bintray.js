@@ -23,7 +23,7 @@ async function genUpdate() {
     const hashHex = sha512.digest('hex')
     updates.push({
       version: versionName,
-      update_url: `https://dl.bintray.com/oott123/proxy-proxy/xpi/proxy_proxy-${versionName}-an+fx.xpi`,
+      update_link: `https://dl.bintray.com/oott123/proxy-proxy/xpi/proxy_proxy-${versionName}-an+fx.xpi`,
       update_hash: `sha512:${hashHex}`
     })
   }
