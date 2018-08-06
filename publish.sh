@@ -4,10 +4,10 @@ node bintray.js
 CURRENT_VERSION=`cat manifest.json | jq -r '.version'`
 CURRENT_FILENAME="proxy_proxy-${CURRENT_VERSION}-an+fx.xpi"
 RN_PATH="release-notes/$CURRENT_VERSION"
-if [ -f release-notes/$CURRENT_VERSION ] then
+if [ -f release-notes/$CURRENT_VERSION ]; then
   hub release create "v${CURRENT_VERSION}" -a web-ext-artifacts/$CURRENT_FILENAME -F $RN_PATH
 else
-  hub release create "v${CURRENT_VERSION}" -a web-ext-artifacts/$CURRENT_FILENAME -m ""
+  hub release create "v${CURRENT_VERSION}" -a web-ext-artifacts/$CURRENT_FILENAME -m "v${CURRENT_VERSION}"
 fi
 jfrog bt u web-ext-artifacts/$CURRENT_FILENAME oott123/proxy-proxy/xpi/publish /xpi/
 # publish version on upload so these files are always accessable
