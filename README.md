@@ -1,6 +1,13 @@
 # Proxy-Proxy
 
-## **WIP** - 本项目正在早期开发中
+[![GitHub release](https://img.shields.io/github/release/oott123/proxy-proxy.svg)](https://github.com/oott123/proxy-proxy/releases/latest)
+[![GitHub](https://img.shields.io/github/license/oott123/proxy-proxy.svg)](https://github.com/oott123/proxy-proxy/blob/master/LICENSE)
+![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/oott123/proxy-proxy.svg)
+
+**WIP** - 本项目正在早期开发中
+
+[下载最新版](https://github.com/oott123/proxy-proxy/releases/latest)
 
 Proxy-Proxy 是一个自动切换代理的 Firefox 插件。
 
