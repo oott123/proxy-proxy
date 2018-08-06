@@ -1,4 +1,4 @@
-# Proxy-Proxy
+# ![logo-taiji](src/assets/buttons/normal_38.png) Proxy-Proxy
 
 [![GitHub release](https://img.shields.io/github/release/oott123/proxy-proxy.svg)](https://github.com/oott123/proxy-proxy/releases/latest)
 [![GitHub](https://img.shields.io/github/license/oott123/proxy-proxy.svg)](https://github.com/oott123/proxy-proxy/blob/master/LICENSE)
