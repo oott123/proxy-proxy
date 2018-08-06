@@ -1,9 +1,9 @@
 # ![logo-taiji](src/assets/buttons/normal_38.png) Proxy-Proxy
 
-[![GitHub release](https://img.shields.io/github/release/oott123/proxy-proxy.svg)](https://github.com/oott123/proxy-proxy/releases/latest)
-[![GitHub](https://img.shields.io/github/license/oott123/proxy-proxy.svg)](https://github.com/oott123/proxy-proxy/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/release/oott123/proxy-proxy.svg)](https://github.com/oott123/proxy-proxy/releases/latest)
+[![License](https://img.shields.io/github/license/oott123/proxy-proxy.svg)](https://github.com/oott123/proxy-proxy/blob/master/LICENSE)
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
-![GitHub last commit](https://img.shields.io/github/last-commit/oott123/proxy-proxy.svg)
+![Last commit](https://img.shields.io/github/last-commit/oott123/proxy-proxy.svg)
 
 **WIP** - 本项目正在早期开发中
 
