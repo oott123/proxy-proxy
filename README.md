@@ -5,7 +5,7 @@
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
 ![Last commit](https://img.shields.io/github/last-commit/oott123/proxy-proxy.svg)
 
-**WIP** - 本项目正在早期开发中
+**Archived** - 本项目已废弃。推荐使用 [SmartProxy](https://addons.mozilla.org/en-US/firefox/addon/smartproxy/) 作为替代！
 
 Proxy-Proxy 是一个自动切换代理的 Firefox 插件。
 
